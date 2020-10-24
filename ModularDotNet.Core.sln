@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1B5E4FBA-9E1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModularDotNet.Core", "src\ModularDotNet.Core\ModularDotNet.Core.csproj", "{3DFEA404-A3E7-4967-AEDC-EF401EF3E21A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6180E163-BF81-4242-B36D-803FD278ABDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModularDotNet.Core.Tests", "test\ModularDotNet.Core.Tests\ModularDotNet.Core.Tests.csproj", "{DF3058D9-4C5C-4507-A565-035A395205BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{3DFEA404-A3E7-4967-AEDC-EF401EF3E21A}.Release|x64.Build.0 = Release|Any CPU
 		{3DFEA404-A3E7-4967-AEDC-EF401EF3E21A}.Release|x86.ActiveCfg = Release|Any CPU
 		{3DFEA404-A3E7-4967-AEDC-EF401EF3E21A}.Release|x86.Build.0 = Release|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Debug|x64.Build.0 = Debug|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Release|x64.ActiveCfg = Release|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Release|x64.Build.0 = Release|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{DF3058D9-4C5C-4507-A565-035A395205BA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3DFEA404-A3E7-4967-AEDC-EF401EF3E21A} = {1B5E4FBA-9E1A-4B48-BB83-A83B34DB1245}
+		{DF3058D9-4C5C-4507-A565-035A395205BA} = {6180E163-BF81-4242-B36D-803FD278ABDB}
 	EndGlobalSection
 EndGlobal
