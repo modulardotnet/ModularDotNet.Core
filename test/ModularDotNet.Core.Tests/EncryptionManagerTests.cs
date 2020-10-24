@@ -13,7 +13,7 @@ namespace ModularDotNet.Core.Tests
         #endregion
 
         #region Methods
-        
+
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption()
         {
@@ -109,7 +109,7 @@ namespace ModularDotNet.Core.Tests
 
             Assert.Equal(randomValue, decrypted);
         }
-        
+
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption()
         {
