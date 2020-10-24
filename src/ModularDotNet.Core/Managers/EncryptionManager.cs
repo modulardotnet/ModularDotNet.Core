@@ -322,6 +322,282 @@ namespace ModularDotNet.Core.Managers
             #endregion
         }
 
+        public static class TripleDES
+        {
+            #region Methods
+
+            /// <summary>
+            /// Generate TripleDES encryption key.
+            /// </summary>
+            /// <returns></returns>
+            public static EncryptionKeyPair GenerateKeyPair()
+            {
+                var ret = new EncryptionKeyPair();
+                using (var tripleDES = System.Security.Cryptography.TripleDES.Create())
+                {
+                    tripleDES.GenerateKey();
+                    ret.PublicKey = tripleDES.Key;
+
+                    tripleDES.GenerateIV();
+                    ret.PrivateKey = tripleDES.IV;
+                }
+
+                return ret;
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt input text.
+            /// </summary>
+            /// <param name="cipherText"></param>
+            /// <param name="publicKey"></param>
+            /// <param name="privateKey"></param>
+            /// <returns></returns>
+            public static string Decrypt(string cipherText, byte[] publicKey = null, byte[] privateKey = null)
+            {
+                ValidateParameters(cipherText, ref publicKey, ref privateKey);
+
+                var byteArr = Convert.FromBase64String(cipherText);
+                string ret;
+                using (var tripleDES = System.Security.Cryptography.TripleDES.Create())
+                {
+                    tripleDES.Key = publicKey;
+                    tripleDES.IV = privateKey;
+
+                    var decryptor = tripleDES.CreateDecryptor(tripleDES.Key, tripleDES.IV);
+
+                    using (var msDecrypt = new MemoryStream(byteArr))
+                    {
+                        using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        {
+                            using (var srDecrypt = new StreamReader(csDecrypt))
+                            {
+                                ret = srDecrypt.ReadToEnd();
+                            }
+                        }
+                    }
+                }
+
+                return ret;
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt input text.
+            /// </summary>
+            /// <param name="cipherText"></param>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public static string Decrypt(string cipherText, EncryptionKeyPair keyPair)
+            {
+                return Decrypt(cipherText, keyPair.PublicKey, keyPair.PrivateKey);
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt input text with casting output type.
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="cipherText"></param>
+            /// <param name="publicKey"></param>
+            /// <param name="privateKey"></param>
+            /// <returns></returns>
+            public static T Decrypt<T>(string cipherText, byte[] publicKey = null, byte[] privateKey = null)
+            {
+                try
+                {
+                    return (T)Convert.ChangeType(Decrypt(cipherText, publicKey, privateKey), typeof(T));
+                }
+                catch (Exception)
+                {
+                    return default;
+                }
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt input text with casting output type.
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="cipherText"></param>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public static T Decrypt<T>(string cipherText, EncryptionKeyPair keyPair)
+            {
+                return Decrypt<T>(cipherText, keyPair.PublicKey, keyPair.PrivateKey);
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to encrypt input text.
+            /// </summary>
+            /// <param name="clearText"></param>
+            /// <param name="publicKey"></param>
+            /// <param name="privateKey"></param>
+            /// <returns></returns>
+            public static string Encrypt(string clearText, byte[] publicKey = null, byte[] privateKey = null)
+            {
+                ValidateParameters(clearText, ref publicKey, ref privateKey);
+
+                byte[] ret;
+                using (var tripleDES = System.Security.Cryptography.TripleDES.Create())
+                {
+                    tripleDES.Key = publicKey;
+                    tripleDES.IV = privateKey;
+
+                    var encryptor = tripleDES.CreateEncryptor(tripleDES.Key, tripleDES.IV);
+
+                    using (var msEncrypt = new MemoryStream())
+                    {
+                        using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                        {
+                            using (var swEncrypt = new StreamWriter(csEncrypt))
+                            {
+                                swEncrypt.Write(clearText);
+                            }
+
+                            ret = msEncrypt.ToArray();
+                        }
+                    }
+                }
+
+                return Convert.ToBase64String(ret);
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to encrypt input text.
+            /// </summary>
+            /// <param name="clearText"></param>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public static string Encrypt(string clearText, EncryptionKeyPair keyPair)
+            {
+                return Encrypt(clearText, keyPair.PublicKey, keyPair.PrivateKey);
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt URL friendly input text.
+            /// </summary>
+            /// <param name="cipherText"></param>
+            /// <param name="publicKey"></param>
+            /// <param name="privateKey"></param>
+            /// <returns></returns>
+            public static string UrlDecrypt(string cipherText, byte[] publicKey = null, byte[] privateKey = null)
+            {
+                ValidateParameters(cipherText, ref publicKey, ref privateKey);
+
+                var byteArr = Convert.FromBase64String(WebUtility.UrlDecode(cipherText));
+                string ret;
+                using (var tripleDES = System.Security.Cryptography.TripleDES.Create())
+                {
+                    tripleDES.Key = publicKey;
+                    tripleDES.IV = privateKey;
+
+                    var decryptor = tripleDES.CreateDecryptor(tripleDES.Key, tripleDES.IV);
+
+                    using (var msDecrypt = new MemoryStream(byteArr))
+                    {
+                        using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        {
+                            using (var srDecrypt = new StreamReader(csDecrypt))
+                            {
+                                ret = srDecrypt.ReadToEnd();
+                            }
+                        }
+                    }
+                }
+
+                return ret;
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt URL friendly input text.
+            /// </summary>
+            /// <param name="cipherText"></param>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public static string UrlDecrypt(string cipherText, EncryptionKeyPair keyPair)
+            {
+                return UrlDecrypt(cipherText, keyPair.PublicKey, keyPair.PrivateKey);
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt URL friendly input text with casting output type.
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="cipherText"></param>
+            /// <param name="publicKey"></param>
+            /// <param name="privateKey"></param>
+            /// <returns></returns>
+            public static T UrlDecrypt<T>(string cipherText, byte[] publicKey = null, byte[] privateKey = null)
+            {
+                try
+                {
+                    return (T)Convert.ChangeType(UrlDecrypt(cipherText, publicKey, privateKey), typeof(T));
+                }
+                catch (Exception)
+                {
+                    return default;
+                }
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to decrypt URL friendly input text with casting output type.
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="cipherText"></param>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public static T UrlDecrypt<T>(string cipherText, EncryptionKeyPair keyPair)
+            {
+                return UrlDecrypt<T>(cipherText, keyPair.PublicKey, keyPair.PrivateKey);
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to encrypt input text with output URL friendly encrypted text.
+            /// </summary>
+            /// <param name="clearText"></param>
+            /// <param name="publicKey"></param>
+            /// <param name="privateKey"></param>
+            /// <returns></returns>
+            public static string UrlEncrypt(string clearText, byte[] publicKey = null, byte[] privateKey = null)
+            {
+                ValidateParameters(clearText, ref publicKey, ref privateKey);
+
+                byte[] ret;
+                using (var tripleDES = System.Security.Cryptography.TripleDES.Create())
+                {
+                    tripleDES.Key = publicKey;
+                    tripleDES.IV = privateKey;
+
+                    var encryptor = tripleDES.CreateEncryptor(tripleDES.Key, tripleDES.IV);
+
+                    using (var msEncrypt = new MemoryStream())
+                    {
+                        using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                        {
+                            using (var swEncrypt = new StreamWriter(csEncrypt))
+                            {
+                                swEncrypt.Write(clearText);
+                            }
+
+                            ret = msEncrypt.ToArray();
+                        }
+                    }
+                }
+
+                return WebUtility.UrlEncode(Convert.ToBase64String(ret));
+            }
+
+            /// <summary>
+            /// Using Triple DES algorithm to encrypt input text with output URL friendly encrypted text.
+            /// </summary>
+            /// <param name="clearText"></param>
+            /// <param name="key"></param>
+            /// <returns></returns>
+            public static string UrlEncrypt(string clearText, EncryptionKeyPair keyPair)
+            {
+                return UrlEncrypt(clearText, keyPair.PublicKey, keyPair.PrivateKey);
+            }
+            
+            #endregion
+        }
+
         #endregion
     }
 }
