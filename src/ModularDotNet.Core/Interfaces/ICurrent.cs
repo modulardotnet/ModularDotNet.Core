@@ -8,7 +8,7 @@ namespace ModularDotNet.Core.Interfaces
 
         string Name { get; set; }
 
-        EncryptionKey EncryptionKey { get; set; }
+        EncryptionKeyPair EncryptionKeyPair { get; set; }
 
         #endregion
     }

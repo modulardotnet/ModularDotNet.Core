@@ -1,6 +1,6 @@
 namespace ModularDotNet.Core.Security
 {
-    public class EncryptionKey
+    public class EncryptionKeyPair
     {
         #region Properties
 
