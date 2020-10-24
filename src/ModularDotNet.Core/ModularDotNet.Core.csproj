@@ -6,4 +6,8 @@
     <FileVersion>0.0.1.0</FileVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DryIoc.dll" Version="4.5.0" />
+  </ItemGroup>
+
 </Project>
