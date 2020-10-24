@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DryIoc;
+using ModularDotNet.Core.Interfaces;
 
 namespace ModularDotNet.Core
 {
@@ -10,6 +11,8 @@ namespace ModularDotNet.Core
         #region Properties
 
         private static IContainer _Container { get; set; }
+
+        public static ICurrent Current => Resolve<ICurrent>();
 
         #endregion
 
