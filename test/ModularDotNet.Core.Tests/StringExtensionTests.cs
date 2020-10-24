@@ -22,7 +22,7 @@ namespace ModularDotNet.Core.Tests
             for (var i = 0; i < _TestRandomRound; i++)
             {
                 var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
-                Assert.True(Regex.IsMatch(randomValue, @"^[0-9a-zA-Z]+$"));
+                Assert.Matches(@"^[0-9a-zA-Z]+$", randomValue);
             }
         }
 
@@ -32,7 +32,7 @@ namespace ModularDotNet.Core.Tests
             for (var i = 0; i < _TestRandomRound; i++)
             {
                 var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), true);
-                Assert.True(Regex.IsMatch(randomValue, @"^[0-9]+$"));
+                Assert.Matches(@"^[0-9]+$", randomValue);
             }
         }
 
@@ -42,7 +42,7 @@ namespace ModularDotNet.Core.Tests
             for (var i = 0; i < _TestRandomRound; i++)
             {
                 var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), lowercase: true);
-                Assert.True(Regex.IsMatch(randomValue, @"^[a-z]+$"));
+                Assert.Matches(@"^[a-z]+$", randomValue);
             }
         }
 
@@ -52,7 +52,7 @@ namespace ModularDotNet.Core.Tests
             for (var i = 0; i < _TestRandomRound; i++)
             {
                 var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), uppercase: true);
-                Assert.True(Regex.IsMatch(randomValue, @"^[A-Z]+$"));
+                Assert.Matches(@"^[A-Z]+$", randomValue);
             }
         }
 
