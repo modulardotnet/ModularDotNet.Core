@@ -1,3 +1,5 @@
+using ModularDotNet.Core.Security;
+
 namespace ModularDotNet.Core.Interfaces
 {
     public interface ICurrent
@@ -5,6 +7,8 @@ namespace ModularDotNet.Core.Interfaces
         #region Properties
 
         string Name { get; set; }
+
+        EncryptionKey EncryptionKey { get; set; }
 
         #endregion
     }
