@@ -30,7 +30,7 @@ namespace ModularDotNet.Core
 
         public static void Start()
         {
-            
+
         }
 
         public static void End()
@@ -46,6 +46,25 @@ namespace ModularDotNet.Core
         public static IContainer GetContainer()
         {
             return _Container;
+        }
+
+        public static void Register(Type serviceAndMayBeImplementationType, IReuse reuse = null, Made made = null, Setup setup = null, IfAlreadyRegistered? ifAlreadyRegistered = null, object serviceKey = null)
+        {
+            _Container.Register(serviceAndMayBeImplementationType, reuse, made, setup, ifAlreadyRegistered, serviceKey);
+        }
+
+        public static void Register(Type serviceType, Type implementationType, IReuse reuse = null, Made made = null, Setup setup = null, IfAlreadyRegistered? ifAlreadyRegistered = null, object serviceKey = null)
+        {
+            _Container.Register(serviceType, implementationType, reuse, made, setup, ifAlreadyRegistered, serviceKey);
+        }
+
+        public static void Register<TImplementation>(IReuse reuse = null, Made made = null, Setup setup = null, IfAlreadyRegistered? ifAlreadyRegistered = null, object serviceKey = null)
+        {
+            _Container.Register<TImplementation>(reuse, made, setup, ifAlreadyRegistered, serviceKey);
+        }
+        public static void Register<TService, TImplementation>(IReuse reuse = null, Made made = null, Setup setup = null, IfAlreadyRegistered? ifAlreadyRegistered = null, object serviceKey = null) where TImplementation : TService
+        {
+            _Container.Register<TService, TImplementation>(reuse, made, setup, ifAlreadyRegistered, serviceKey);
         }
 
         public static object MustResolve(Type serviceType)
