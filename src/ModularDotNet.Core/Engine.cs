@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DryIoc;
 using ModularDotNet.Core.Interfaces;
+using ModularDotNet.Core.Managers;
 
 namespace ModularDotNet.Core
 {
@@ -27,11 +28,21 @@ namespace ModularDotNet.Core
 
         #region Methods
 
+        public static void Start()
+        {
+            
+        }
+
+        public static void End()
+        {
+            LogManager.End();
+        }
+
         public static string DIDiagnostics()
         {
             return string.Join("\r\n", _Container.GetServiceRegistrations().Select(x => $"[{x.OptionalServiceKey}]\r\n{x.ServiceType.FullName}\r\n{x.Factory.ImplementationType?.FullName}"));
         }
-        
+
         public static IContainer GetContainer()
         {
             return _Container;
