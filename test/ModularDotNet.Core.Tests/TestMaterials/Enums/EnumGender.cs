@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using ModularDotNet.Core.Attributes;
 
-namespace ModularDotNet.Core.Tests.Enums
+namespace ModularDotNet.Core.Tests.TestMaterials.Enums
 {
     public enum EnumGender
     {

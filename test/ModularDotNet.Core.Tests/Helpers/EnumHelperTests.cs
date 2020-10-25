@@ -1,5 +1,5 @@
 using System;
-using ModularDotNet.Core.Tests.Enums;
+using ModularDotNet.Core.Tests.TestMaterials.Enums;
 using Xunit;
 
 namespace ModularDotNet.Core.Tests.Helpers
