@@ -17,7 +17,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), true, true, true, true, true, true, true);
+            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue, keyPair);
@@ -65,7 +65,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), true, true, true, true, true, true, true);
+            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue, keyPair);
@@ -113,7 +113,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), true, true, true, true, true, true, true);
+            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue, keyPair);
@@ -161,7 +161,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), true, true, true, true, true, true, true);
+            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue, keyPair);
