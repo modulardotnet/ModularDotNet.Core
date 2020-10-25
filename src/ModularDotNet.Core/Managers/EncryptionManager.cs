@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System;
 using System.IO;
 using System.Net;
@@ -127,7 +128,7 @@ namespace ModularDotNet.Core.Managers
             {
                 try
                 {
-                    return (T)Convert.ChangeType(Decrypt(cipherText, publicKey, privateKey), typeof(T));
+                    return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(Decrypt(cipherText, publicKey, privateKey));
                 }
                 catch (Exception)
                 {
@@ -252,7 +253,7 @@ namespace ModularDotNet.Core.Managers
             {
                 try
                 {
-                    return (T)Convert.ChangeType(UrlDecrypt(cipherText, publicKey, privateKey), typeof(T));
+                    return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(UrlDecrypt(cipherText, publicKey, privateKey));
                 }
                 catch (Exception)
                 {
@@ -403,7 +404,7 @@ namespace ModularDotNet.Core.Managers
             {
                 try
                 {
-                    return (T)Convert.ChangeType(Decrypt(cipherText, publicKey, privateKey), typeof(T));
+                    return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(Decrypt(cipherText, publicKey, privateKey));
                 }
                 catch (Exception)
                 {
@@ -528,7 +529,7 @@ namespace ModularDotNet.Core.Managers
             {
                 try
                 {
-                    return (T)Convert.ChangeType(UrlDecrypt(cipherText, publicKey, privateKey), typeof(T));
+                    return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(UrlDecrypt(cipherText, publicKey, privateKey));
                 }
                 catch (Exception)
                 {
