@@ -1,23 +1,18 @@
 using System;
 using Xunit;
 using ModularDotNet.Core.Managers;
+using ModularDotNet.Core.Tests.TestUtilities;
 
 namespace ModularDotNet.Core.Tests.Managers
 {
     public class EncryptionManagerTests
     {
-        #region Fields
-
-        private static Random _Seed = new Random();
-
-        #endregion
-
         #region Methods
 
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomValue = Generator.RandomString();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue, keyPair);
@@ -29,7 +24,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_Int()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -41,7 +36,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_NullableInt()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -53,7 +48,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_Double()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -65,7 +60,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_NullableDouble()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -77,7 +72,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_Decimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -89,7 +84,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_NullableDecimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -101,7 +96,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_Boolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -113,7 +108,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_NormalEncryption_NullableBoolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.Encrypt(randomValue.ToString(), keyPair);
@@ -125,7 +120,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomValue = Generator.RandomString();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue, keyPair);
@@ -137,7 +132,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_Int()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -149,7 +144,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_NullableInt()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -161,7 +156,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_Double()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -173,7 +168,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_NullableDouble()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -185,7 +180,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_Decimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -197,7 +192,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_NullableDecimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -209,7 +204,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_Boolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -221,7 +216,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_Aes_UrlEncryption_NullableBoolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.Aes.GenerateKeyPair();
 
             var encrypted = EncryptionManager.Aes.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -233,7 +228,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomValue = Generator.RandomString();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue, keyPair);
@@ -245,7 +240,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_Int()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -257,7 +252,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_NullableInt()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -269,7 +264,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_Double()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -281,7 +276,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_NullableDouble()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -293,7 +288,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_Decimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -305,7 +300,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_NullableDecimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -317,7 +312,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_Boolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -329,7 +324,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_NormalEncryption_NullableBoolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.Encrypt(randomValue.ToString(), keyPair);
@@ -341,7 +336,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption()
         {
-            var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomValue = Generator.RandomString();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue, keyPair);
@@ -353,7 +348,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_Int()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -365,7 +360,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_NullableInt()
         {
-            var randomValue = new Random(_Seed.Next()).Next(10, 100);
+            var randomValue = Generator.RandomInt();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -377,7 +372,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_Double()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -389,7 +384,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_NullableDouble()
         {
-            var randomValue = new Random(_Seed.Next()).NextDouble();
+            var randomValue = Generator.RandomDouble();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -401,7 +396,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_Decimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -413,7 +408,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_NullableDecimal()
         {
-            var randomValue = Convert.ToDecimal(new Random(_Seed.Next()).NextDouble());
+            var randomValue = Generator.RandomDecimal();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -425,7 +420,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_Boolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);
@@ -437,7 +432,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void EncryptionManager_TripleDES_UrlEncryption_NullableBoolean()
         {
-            var randomValue = new Random(_Seed.Next()).Next() % 2 == 0;
+            var randomValue = Generator.RandomBoolean();
             var keyPair = EncryptionManager.TripleDES.GenerateKeyPair();
 
             var encrypted = EncryptionManager.TripleDES.UrlEncrypt(randomValue.ToString(), keyPair);

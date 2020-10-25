@@ -1,5 +1,6 @@
 using System;
 using ModularDotNet.Core.Managers;
+using ModularDotNet.Core.Tests.TestUtilities;
 using Serilog;
 using Serilog.Sinks.TestCorrelator;
 using Xunit;
@@ -8,12 +9,6 @@ namespace ModularDotNet.Core.Tests.Managers
 {
     public class LogManagerTests
     {
-        #region Fields
-
-        private static Random _Seed = new Random();
-
-        #endregion
-
         #region Constructor
 
         public LogManagerTests()
@@ -30,7 +25,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void LogManager_WriteVerbose()
         {
-            var randomString = StringHelper.GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomString = Generator.RandomString();
 
             using (var context = TestCorrelator.CreateContext())
             {
@@ -47,7 +42,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void LogManager_WriteDebug()
         {
-            var randomString = StringHelper.GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomString = Generator.RandomString();
 
             using (TestCorrelator.CreateContext())
             {
@@ -64,7 +59,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void LogManager_WriteInformation()
         {
-            var randomString = StringHelper.GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomString = Generator.RandomString();
 
             using (TestCorrelator.CreateContext())
             {
@@ -81,7 +76,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void LogManager_WriteWarning()
         {
-            var randomString = StringHelper.GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomString = Generator.RandomString();
 
             using (TestCorrelator.CreateContext())
             {
@@ -98,7 +93,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void LogManager_WriteError()
         {
-            var randomString = StringHelper.GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomString = Generator.RandomString();
 
             using (TestCorrelator.CreateContext())
             {
@@ -115,7 +110,7 @@ namespace ModularDotNet.Core.Tests.Managers
         [Fact]
         public void LogManager_WriteFatal()
         {
-            var randomString = StringHelper.GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+            var randomString = Generator.RandomString();
 
             using (TestCorrelator.CreateContext())
             {
