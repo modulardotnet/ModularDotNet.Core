@@ -1,7 +1,7 @@
 using ModularDotNet.Core.Tests.Enums;
 using Xunit;
 
-namespace ModularDotNet.Core.Tests
+namespace ModularDotNet.Core.Tests.Extensions
 {
     public class EnumExtensionTests
     {

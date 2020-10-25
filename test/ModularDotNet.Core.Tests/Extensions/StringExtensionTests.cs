@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace ModularDotNet.Core.Tests
+namespace ModularDotNet.Core.Tests.Extensions
 {
     public class StringExtensionTests
     {

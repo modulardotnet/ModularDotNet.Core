@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using ModularDotNet.Core.Managers;
 
-namespace ModularDotNet.Core.Tests
+namespace ModularDotNet.Core.Tests.Managers
 {
     public class EncryptionManagerTests
     {

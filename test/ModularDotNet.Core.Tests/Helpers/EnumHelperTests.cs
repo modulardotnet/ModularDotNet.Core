@@ -2,7 +2,7 @@ using System;
 using ModularDotNet.Core.Tests.Enums;
 using Xunit;
 
-namespace ModularDotNet.Core.Tests
+namespace ModularDotNet.Core.Tests.Helpers
 {
     public class EnumHelperTests
     {

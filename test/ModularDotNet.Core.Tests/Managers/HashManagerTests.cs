@@ -4,7 +4,7 @@ using System.Text;
 using ModularDotNet.Core.Managers;
 using Xunit;
 
-namespace ModularDotNet.Core.Tests
+namespace ModularDotNet.Core.Tests.Managers
 {
     public class HashManagerTests
     {
