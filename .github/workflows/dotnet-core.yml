@@ -27,6 +27,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with: 
+        args: >
+          -Dsonar.organization=modulardotnet
+          -Dsonar.projectKey=modulardotnet_ModularDotNet.Core
+          -Dsonar.sources=.
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
