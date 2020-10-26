@@ -27,7 +27,8 @@ jobs:
       with:
         args: >
           -Dsonar.organization=modulardotnet
-          -Dsonar.projectKey=ModularDotNet.Core
+          -Dsonar.projectKey=modulardotnet_ModularDotNet.Core
+          -Dsonar.verbose=true
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
