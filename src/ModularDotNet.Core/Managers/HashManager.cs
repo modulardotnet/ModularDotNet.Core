@@ -15,11 +15,7 @@ namespace ModularDotNet.Core.Managers
         /// <returns></returns>
         public static string CreateSaltKey(int size)
         {
-            var rng = RandomNumberGenerator.Create();
-            var buff = new byte[size];
-            rng.GetBytes(buff);
-
-            return Convert.ToBase64String(buff);
+            return Convert.ToBase64String(GenerateHashedKey(size));
         }
 
         /// <summary>

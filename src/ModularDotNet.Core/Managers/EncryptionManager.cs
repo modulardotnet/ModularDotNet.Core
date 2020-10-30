@@ -11,13 +11,8 @@ namespace ModularDotNet.Core.Managers
     {
         #region Methods
 
-        private static void ValidateParameters(string input, ref byte[] publicKey, ref byte[] privateKey)
+        private static void ValidateParameters(ref byte[] publicKey, ref byte[] privateKey)
         {
-            if (string.IsNullOrEmpty(input))
-            {
-                throw new ArgumentNullException(nameof(input));
-            }
-
             if (publicKey == null)
             {
                 if (Engine.Current?.EncryptionKeyPair?.PublicKey != null)
@@ -43,6 +38,16 @@ namespace ModularDotNet.Core.Managers
             }
         }
 
+        private static void ValidateParameters(string input, ref byte[] publicKey, ref byte[] privateKey)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+
+            ValidateParameters(ref publicKey, ref privateKey);
+        }
+
         private static void ValidateParameters(byte[] input, ref byte[] publicKey, ref byte[] privateKey)
         {
             if (input == null || input.Length == 0)
@@ -50,29 +55,7 @@ namespace ModularDotNet.Core.Managers
                 throw new ArgumentNullException(nameof(input));
             }
 
-            if (publicKey == null)
-            {
-                if (Engine.Current?.EncryptionKeyPair?.PublicKey != null)
-                {
-                    publicKey = Engine.Current?.EncryptionKeyPair?.PublicKey;
-                }
-                else
-                {
-                    throw new ArgumentNullException(nameof(publicKey));
-                }
-            }
-
-            if (privateKey == null)
-            {
-                if (Engine.Current?.EncryptionKeyPair?.PrivateKey != null)
-                {
-                    privateKey = Engine.Current?.EncryptionKeyPair?.PrivateKey;
-                }
-                else
-                {
-                    throw new ArgumentNullException(nameof(privateKey));
-                }
-            }
+            ValidateParameters(ref publicKey, ref privateKey);
         }
 
         #endregion
