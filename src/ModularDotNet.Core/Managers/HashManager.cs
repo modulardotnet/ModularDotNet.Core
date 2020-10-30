@@ -241,7 +241,7 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA1Managed.Create();
+                var crypto = System.Security.Cryptography.SHA1Managed.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -280,7 +280,7 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA256Managed.Create();
+                var crypto = System.Security.Cryptography.SHA256Managed.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -319,7 +319,7 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA384Managed.Create();
+                var crypto = System.Security.Cryptography.SHA384Managed.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -358,7 +358,7 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA512Managed.Create();
+                var crypto = System.Security.Cryptography.SHA512Managed.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
