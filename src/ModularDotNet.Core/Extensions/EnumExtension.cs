@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using ModularDotNet.Core.Attributes;
 
-public static class EnumExtension //NOSONAR
+public static class EnumExtension // NOSONAR
 {
     #region Methods
 

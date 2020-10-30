@@ -1,4 +1,4 @@
-public static class StringHelper //NOSONAR
+public static class StringHelper // NOSONAR
 {
     #region Method
 

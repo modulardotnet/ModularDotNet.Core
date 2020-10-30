@@ -2,7 +2,7 @@ using System.Text;
 using System;
 using System.Linq;
 
-public static class StringExtension //NOSONAR
+public static class StringExtension // NOSONAR
 {
     #region Fields
 
