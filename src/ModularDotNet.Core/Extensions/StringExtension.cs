@@ -1,3 +1,4 @@
+using System.Text;
 using System;
 using System.Linq;
 
@@ -13,57 +14,57 @@ public static class StringExtension //NOSONAR
     
     public static string GenerateRandomString(this string stringValue, int length, bool numeric = false, bool lowercase = false, bool uppercase = false, bool space = false, bool underscore = false, bool hypen = false, bool period = false)
     {
-        var ret = "";
-        var validCharacters = "";
+        var ret = new StringBuilder();
+        var validCharacters = new StringBuilder();
 
         if (lowercase)
         {
-            validCharacters += "abcdefghijklmnopqrstuvwxyz";
+            validCharacters.Append("abcdefghijklmnopqrstuvwxyz");
         }
 
         if (uppercase)
         {
-            validCharacters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            validCharacters.Append("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         }
 
         if (numeric)
         {
-            validCharacters += "0123456789";
+            validCharacters.Append("0123456789");
         }
 
         if (space)
         {
-            validCharacters += " ";
+            validCharacters.Append(" ");
         }
 
         if (underscore)
         {
-            validCharacters += "_";
+            validCharacters.Append("_");
         }
 
         if (hypen)
         {
-            validCharacters += "-";
+            validCharacters.Append("-");
         }
 
         if (period)
         {
-            validCharacters += ".";
+            validCharacters.Append(".");
         }
 
-        if (string.IsNullOrEmpty(validCharacters))
+        if (validCharacters.Length == 0)
         {
-            validCharacters += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            validCharacters.Append("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
         }
 
         var rand = new Random(_Seed.Next());
 
         for (var i = 0; i < length; i++)
         {
-            ret += validCharacters[rand.Next(0, validCharacters.Length - 1)];
+            ret.Append(validCharacters[rand.Next(0, validCharacters.Length - 1)]);
         }
 
-        return ret;
+        return ret.ToString();
     }
 
     public static bool CheckLuhn(this string value)
