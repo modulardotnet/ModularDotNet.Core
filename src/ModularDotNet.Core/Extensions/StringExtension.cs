@@ -12,7 +12,7 @@ public static class StringExtension // NOSONAR
 
     #region Methods
     
-    public static string GenerateRandomString(this string stringValue, int length, bool numeric = false, bool lowercase = false, bool uppercase = false, bool space = false, bool underscore = false, bool hypen = false, bool period = false)
+    public static string GenerateRandomString(this string stringValue, int length, bool numeric = false, bool lowercase = false, bool uppercase = false, string additionalCharacters = null)
     {
         var ret = new StringBuilder();
         var validCharacters = new StringBuilder();
@@ -32,24 +32,9 @@ public static class StringExtension // NOSONAR
             validCharacters.Append("0123456789");
         }
 
-        if (space)
+        if (!string.IsNullOrEmpty(additionalCharacters))
         {
-            validCharacters.Append(" ");
-        }
-
-        if (underscore)
-        {
-            validCharacters.Append("_");
-        }
-
-        if (hypen)
-        {
-            validCharacters.Append("-");
-        }
-
-        if (period)
-        {
-            validCharacters.Append(".");
+            validCharacters.Append(additionalCharacters);
         }
 
         if (validCharacters.Length == 0)
