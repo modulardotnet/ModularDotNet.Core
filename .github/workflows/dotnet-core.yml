@@ -7,26 +7,55 @@ on:
     branches: [ main ]
 
 jobs:
+  # GitHub CodeQL Analyze
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['csharp']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+      
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+      
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+   
+  # .NET Core Build
   build:
     runs-on: windows-latest
-#     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
       with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+      
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.403
+    
     - name: Install dependencies
       run: dotnet restore
+    
     - name: Cache SonarCloud packages
       uses: actions/cache@v1
       with:
         path: ~\sonar\cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
+    
     - name: Cache SonarCloud scanner
       id: cache-sonar-scanner
       uses: actions/cache@v1
@@ -34,12 +63,14 @@ jobs:
         path: .\.sonar\scanner
         key: ${{ runner.os }}-sonar-scanner
         restore-keys: ${{ runner.os }}-sonar-scanner
+    
     - name: Install SonarCloud scanner
       if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
       shell: powershell
       run: |
         New-Item -Path .\.sonar\scanner -ItemType Directory
         dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+    
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,17 +81,4 @@ jobs:
         dotnet build --configuration Release --no-restore
         dotnet test --no-restore --verbosity normal
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-#     - name: SonarCloud Scan
-#       uses: SonarSource/sonarcloud-github-action@v1.4
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#       with: 
-#         args: >
-#           -Dsonar.organization=modulardotnet
-#           -Dsonar.projectKey=modulardotnet_ModularDotNet.Core
-#           -Dsonar.sources=.
-#     - name: Build
-#       run: dotnet build --configuration Release --no-restore
-#     - name: Test
-#       run: dotnet test --no-restore --verbosity normal
+        
