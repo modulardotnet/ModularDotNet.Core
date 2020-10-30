@@ -17,7 +17,7 @@ namespace ModularDotNet.Core.Managers
 
         static LogManager()
         {
-            _LoggerConfiguration = new LoggerConfiguration();
+            _LoggerConfiguration = new LoggerConfiguration(); // NOSONAR
         }
 
         #endregion
