@@ -21,7 +21,7 @@ namespace ModularDotNet.Core.Tests.Extensions
             for (var i = 0; i < _TestRandomRound; i++)
             {
                 var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
-                Assert.Matches(@"^[0-9a-zA-Z_\s\-\.]+$", randomValue);
+                Assert.Matches(@"^[0-9a-zA-Z]+$", randomValue);
             }
         }
 

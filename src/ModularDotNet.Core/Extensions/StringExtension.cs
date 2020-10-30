@@ -10,11 +10,6 @@ public static class StringExtension //NOSONAR
     #endregion
 
     #region Methods
-
-    public static string GenerateRandomString(this string stringValue, int length)
-    {
-        return stringValue.GenerateRandomString(length, true, true, true, true, true, true, true);
-    }
     
     public static string GenerateRandomString(this string stringValue, int length, bool numeric = false, bool lowercase = false, bool uppercase = false, bool space = false, bool underscore = false, bool hypen = false, bool period = false)
     {
