@@ -80,7 +80,7 @@ public static class StringExtension //NOSONAR
             .ToList();
         var counter = 0;
 
-        for (var i = 1; i < reverse.Count(); i++)
+        for (var i = 1; i < reverse.Count; i++)
         {
             if (i % 2 == 0)
             {
