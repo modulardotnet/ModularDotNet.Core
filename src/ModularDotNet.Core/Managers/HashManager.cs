@@ -38,7 +38,6 @@ namespace ModularDotNet.Core.Managers
 
         #endregion
 
-
         #region Public Classes
 
         public static class MD5
@@ -52,7 +51,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.MD5.Create();
+                var crypto = System.Security.Cryptography.MD5.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -90,7 +89,7 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA1.Create();
+                var crypto = System.Security.Cryptography.SHA1.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -129,7 +128,7 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA256.Create();
+                var crypto = System.Security.Cryptography.SHA256.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -168,7 +167,7 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA384.Create();
+                var crypto = System.Security.Cryptography.SHA384.Create(); // NOSONAR
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -207,7 +206,163 @@ namespace ModularDotNet.Core.Managers
             // ReSharper disable once InconsistentNaming
             public static string Hash(string text)
             {
-                var crypto = System.Security.Cryptography.SHA512.Create();
+                var crypto = System.Security.Cryptography.SHA512.Create(); // NOSONAR
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashed)
+                    .Replace("-", string.Empty);
+            }
+
+            /// <summary>
+            /// Using SHA512 algorithm to hash input text with provided salt key or auto generate salt key. Default salt key size was 5.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <param name="salt"></param>
+            /// <param name="saltSize"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text, ref string salt, int saltSize = 6)
+            {
+                if (string.IsNullOrEmpty(salt))
+                {
+                    salt = CreateSaltKey(saltSize);
+                }
+
+                return Hash($"{text}{salt}");
+            }
+
+            #endregion
+        }
+
+        public static class Sha1Managed
+        {
+            #region Methods
+
+            /// <summary>
+            /// Using SHA1 algorithm to hash input text.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text)
+            {
+                var crypto = System.Security.Cryptography.SHA1Managed.Create();
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashed)
+                    .Replace("-", string.Empty);
+            }
+
+            /// <summary>
+            /// Using SHA1 algorithm to hash input text with provided salt key or auto generate salt key. Default salt key size was 5.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <param name="salt"></param>
+            /// <param name="saltSize"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text, ref string salt, int saltSize = 6)
+            {
+                if (string.IsNullOrEmpty(salt))
+                {
+                    salt = CreateSaltKey(saltSize);
+                }
+
+                return Hash($"{text}{salt}");
+            }
+
+            #endregion
+        }
+
+        public static class Sha256Managed
+        {
+            #region Methods
+
+            /// <summary>
+            /// Using SHA256 algorithm to hash input text.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text)
+            {
+                var crypto = System.Security.Cryptography.SHA256Managed.Create();
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashed)
+                    .Replace("-", string.Empty);
+            }
+
+            /// <summary>
+            /// Using SHA256 algorithm to hash input text with provided salt key or auto generate salt key. Default salt key size was 5.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <param name="salt"></param>
+            /// <param name="saltSize"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text, ref string salt, int saltSize = 6)
+            {
+                if (string.IsNullOrEmpty(salt))
+                {
+                    salt = CreateSaltKey(saltSize);
+                }
+
+                return Hash($"{text}{salt}");
+            }
+
+            #endregion
+        }
+
+        public static class Sha384Managed
+        {
+            #region Methods
+
+            /// <summary>
+            /// Using SHA384 algorithm to hash input text.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text)
+            {
+                var crypto = System.Security.Cryptography.SHA384Managed.Create();
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashed)
+                    .Replace("-", string.Empty);
+            }
+
+            /// <summary>
+            /// Using SHA384 algorithm to hash input text with provided salt key or auto generate salt key. Default salt key size was 5.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <param name="salt"></param>
+            /// <param name="saltSize"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text, ref string salt, int saltSize = 6)
+            {
+                if (string.IsNullOrEmpty(salt))
+                {
+                    salt = CreateSaltKey(saltSize);
+                }
+
+                return Hash($"{text}{salt}");
+            }
+
+            #endregion
+        }
+
+        public static class Sha512Managed
+        {
+            #region Methods
+
+            /// <summary>
+            /// Using SHA512 algorithm to hash input text.
+            /// </summary>
+            /// <param name="text"></param>
+            /// <returns></returns>
+            // ReSharper disable once InconsistentNaming
+            public static string Hash(string text)
+            {
+                var crypto = System.Security.Cryptography.SHA512Managed.Create();
                 var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
                 return BitConverter.ToString(hashed)
                     .Replace("-", string.Empty);
@@ -250,7 +405,7 @@ namespace ModularDotNet.Core.Managers
                     key = GenerateHashedKey();
                 }
                 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACMD5"))
+                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACMD5")) // NOSONAR
                 {
                     crypto.Key = key;
 
@@ -296,7 +451,7 @@ namespace ModularDotNet.Core.Managers
                     key = GenerateHashedKey();
                 }
                 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA1"))
+                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA1")) // NOSONAR
                 {
                     crypto.Key = key;
 
@@ -342,7 +497,7 @@ namespace ModularDotNet.Core.Managers
                     key = GenerateHashedKey();
                 }
                 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA256"))
+                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA256")) // NOSONAR
                 {
                     crypto.Key = key;
 
@@ -388,7 +543,7 @@ namespace ModularDotNet.Core.Managers
                     key = GenerateHashedKey();
                 }
                 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA384"))
+                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA384")) // NOSONAR
                 {
                     crypto.Key = key;
 
@@ -434,7 +589,7 @@ namespace ModularDotNet.Core.Managers
                     key = GenerateHashedKey();
                 }
                 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA512"))
+                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA512")) // NOSONAR
                 {
                     crypto.Key = key;
 

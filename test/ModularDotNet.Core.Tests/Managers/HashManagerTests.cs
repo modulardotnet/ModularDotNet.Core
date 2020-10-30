@@ -185,8 +185,147 @@ namespace ModularDotNet.Core.Tests.Managers
 
             Assert.Equal(hashedRandomValue, expectedHashed);
         }
-        
 
+        [Fact]
+        public void HashManager_SHA1Managed_Hash()
+        {
+            var randomValue = Generator.RandomString();
+            var hashedRandomValue = HashManager.Sha1Managed.Hash(randomValue);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA1Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(randomValue));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+
+        [Fact]
+        public void HashManager_SHA1Managed_HashWithSalt()
+        {
+            var randomValue = Generator.RandomString();
+            var salt = "";
+            var hashedRandomValue = HashManager.Sha1Managed.Hash(randomValue, ref salt);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA1Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{randomValue}{salt}"));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+
+        [Fact]
+        public void HashManager_SHA256Managed_Hash()
+        {
+            var randomValue = Generator.RandomString();
+            var hashedRandomValue = HashManager.Sha256Managed.Hash(randomValue);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA256Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(randomValue));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+
+        [Fact]
+        public void HashManager_SHA256Managed_HashWithSalt()
+        {
+            var randomValue = Generator.RandomString();
+            var salt = "";
+            var hashedRandomValue = HashManager.Sha256Managed.Hash(randomValue, ref salt);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA256Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{randomValue}{salt}"));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+
+        [Fact]
+        public void HashManager_SHA384Managed_Hash()
+        {
+            var randomValue = Generator.RandomString();
+            var hashedRandomValue = HashManager.Sha384Managed.Hash(randomValue);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA384Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(randomValue));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+
+        [Fact]
+        public void HashManager_SHA384Managed_HashWithSalt()
+        {
+            var randomValue = Generator.RandomString();
+            var salt = "";
+            var hashedRandomValue = HashManager.Sha384Managed.Hash(randomValue, ref salt);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA384Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{randomValue}{salt}"));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+
+        [Fact]
+        public void HashManager_SHA512Managed_Hash()
+        {
+            var randomValue = Generator.RandomString();
+            var hashedRandomValue = HashManager.Sha512Managed.Hash(randomValue);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA512Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(randomValue));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+
+        [Fact]
+        public void HashManager_SHA512Managed_HashWithSalt()
+        {
+            var randomValue = Generator.RandomString();
+            var salt = "";
+            var hashedRandomValue = HashManager.Sha512Managed.Hash(randomValue, ref salt);
+
+            var expectedHashed = "";
+            using (var crypto = System.Security.Cryptography.SHA512Managed.Create())
+            {
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{randomValue}{salt}"));
+                expectedHashed = BitConverter.ToString(hashed)
+                            .Replace("-", string.Empty);
+            }
+
+            Assert.Equal(hashedRandomValue, expectedHashed);
+        }
+        
         [Fact]
         public void HashManager_HMACMD5_Hash()
         {
