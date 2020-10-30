@@ -6,7 +6,7 @@ public static class StringExtension // NOSONAR
 {
     #region Fields
 
-    private static readonly Random _Seed = new Random();
+    private static readonly Random _Seed = new Random(); // NOSONAR 
 
     #endregion
 
@@ -57,7 +57,7 @@ public static class StringExtension // NOSONAR
             validCharacters.Append("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
         }
 
-        var rand = new Random(_Seed.Next());
+        var rand = new Random(_Seed.Next()); // NOSONAR
 
         for (var i = 0; i < length; i++)
         {
