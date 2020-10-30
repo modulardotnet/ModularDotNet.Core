@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
       with:
@@ -40,7 +38,8 @@ jobs:
       shell: pwsh
       run: |
         New-Item -Path .\.sonar\scanner -ItemType Directory
-        dotnet tool update dotnet-sonarscanner
+        dotnet new tool-manifest
+        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
