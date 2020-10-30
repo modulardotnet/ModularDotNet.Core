@@ -50,7 +50,7 @@ namespace ModularDotNet.Core.Tests.Managers
         public void HashManager_SHA1_Hash()
         {
             var randomValue = Generator.RandomString();
-            var hashedRandomValue = HashManager.SHA1.Hash(randomValue);
+            var hashedRandomValue = HashManager.Sha1.Hash(randomValue);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA1.Create())
@@ -68,7 +68,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             var salt = "";
-            var hashedRandomValue = HashManager.SHA1.Hash(randomValue, ref salt);
+            var hashedRandomValue = HashManager.Sha1.Hash(randomValue, ref salt);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA1.Create())
@@ -85,7 +85,7 @@ namespace ModularDotNet.Core.Tests.Managers
         public void HashManager_SHA256_Hash()
         {
             var randomValue = Generator.RandomString();
-            var hashedRandomValue = HashManager.SHA256.Hash(randomValue);
+            var hashedRandomValue = HashManager.Sha256.Hash(randomValue);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA256.Create())
@@ -103,7 +103,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             var salt = "";
-            var hashedRandomValue = HashManager.SHA256.Hash(randomValue, ref salt);
+            var hashedRandomValue = HashManager.Sha256.Hash(randomValue, ref salt);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA256.Create())
@@ -120,7 +120,7 @@ namespace ModularDotNet.Core.Tests.Managers
         public void HashManager_SHA384_Hash()
         {
             var randomValue = Generator.RandomString();
-            var hashedRandomValue = HashManager.SHA384.Hash(randomValue);
+            var hashedRandomValue = HashManager.Sha384.Hash(randomValue);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA384.Create())
@@ -138,7 +138,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             var salt = "";
-            var hashedRandomValue = HashManager.SHA384.Hash(randomValue, ref salt);
+            var hashedRandomValue = HashManager.Sha384.Hash(randomValue, ref salt);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA384.Create())
@@ -155,7 +155,7 @@ namespace ModularDotNet.Core.Tests.Managers
         public void HashManager_SHA512_Hash()
         {
             var randomValue = Generator.RandomString();
-            var hashedRandomValue = HashManager.SHA512.Hash(randomValue);
+            var hashedRandomValue = HashManager.Sha512.Hash(randomValue);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA512.Create())
@@ -173,7 +173,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             var salt = "";
-            var hashedRandomValue = HashManager.SHA512.Hash(randomValue, ref salt);
+            var hashedRandomValue = HashManager.Sha512.Hash(randomValue, ref salt);
 
             var expectedHashed = "";
             using (var crypto = System.Security.Cryptography.SHA512.Create())
@@ -192,7 +192,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACMD5.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacMD5.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACMD5"))
@@ -212,7 +212,7 @@ namespace ModularDotNet.Core.Tests.Managers
             var randomValue = Generator.RandomString();
             var salt = "";
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACMD5.Hash(randomValue, ref key, ref salt);
+            var hashedRandomValue = HashManager.HmacMD5.Hash(randomValue, ref key, ref salt);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACMD5"))
@@ -231,7 +231,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = HashManager.GenerateHashedKey(Generator.RandomInt(1, 128));
-            var hashedRandomValue = HashManager.HMACMD5.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacMD5.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACMD5"))
@@ -250,7 +250,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA1.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha1.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA1"))
@@ -270,7 +270,7 @@ namespace ModularDotNet.Core.Tests.Managers
             var randomValue = Generator.RandomString();
             var salt = "";
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA1.Hash(randomValue, ref key, ref salt);
+            var hashedRandomValue = HashManager.HmacSha1.Hash(randomValue, ref key, ref salt);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA1"))
@@ -289,7 +289,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = HashManager.GenerateHashedKey(Generator.RandomInt(1, 128));
-            var hashedRandomValue = HashManager.HMACSHA1.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha1.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA1"))
@@ -308,7 +308,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA256.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha256.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA256"))
@@ -328,7 +328,7 @@ namespace ModularDotNet.Core.Tests.Managers
             var randomValue = Generator.RandomString();
             var salt = "";
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA256.Hash(randomValue, ref key, ref salt);
+            var hashedRandomValue = HashManager.HmacSha256.Hash(randomValue, ref key, ref salt);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA256"))
@@ -347,7 +347,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = HashManager.GenerateHashedKey(Generator.RandomInt(1, 128));
-            var hashedRandomValue = HashManager.HMACSHA256.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha256.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA256"))
@@ -366,7 +366,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA384.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha384.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA384"))
@@ -386,7 +386,7 @@ namespace ModularDotNet.Core.Tests.Managers
             var randomValue = Generator.RandomString();
             var salt = "";
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA384.Hash(randomValue, ref key, ref salt);
+            var hashedRandomValue = HashManager.HmacSha384.Hash(randomValue, ref key, ref salt);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA384"))
@@ -405,7 +405,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = HashManager.GenerateHashedKey(Generator.RandomInt(1, 128));
-            var hashedRandomValue = HashManager.HMACSHA384.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha384.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA384"))
@@ -424,7 +424,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA512.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha512.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA512"))
@@ -444,7 +444,7 @@ namespace ModularDotNet.Core.Tests.Managers
             var randomValue = Generator.RandomString();
             var salt = "";
             byte[] key = null;
-            var hashedRandomValue = HashManager.HMACSHA512.Hash(randomValue, ref key, ref salt);
+            var hashedRandomValue = HashManager.HmacSha512.Hash(randomValue, ref key, ref salt);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA512"))
@@ -463,7 +463,7 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             var randomValue = Generator.RandomString();
             byte[] key = HashManager.GenerateHashedKey(Generator.RandomInt(1, 128));
-            var hashedRandomValue = HashManager.HMACSHA512.Hash(randomValue, ref key);
+            var hashedRandomValue = HashManager.HmacSha512.Hash(randomValue, ref key);
 
             var expectedHashed = "";
             using (var crypto = HMAC.Create("HMACSHA512"))

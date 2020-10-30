@@ -72,16 +72,13 @@ namespace ModularDotNet.Core.Managers
                     salt = CreateSaltKey(saltSize);
                 }
 
-                var crypto = System.Security.Cryptography.MD5.Create();
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return Hash($"{text}{salt}");
             }
 
             #endregion
         }
 
-        public static class SHA1
+        public static class Sha1
         {
             #region Methods
 
@@ -114,16 +111,13 @@ namespace ModularDotNet.Core.Managers
                     salt = CreateSaltKey(saltSize);
                 }
 
-                var crypto = System.Security.Cryptography.SHA1.Create();
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return Hash($"{text}{salt}");
             }
 
             #endregion
         }
 
-        public static class SHA256
+        public static class Sha256
         {
             #region Methods
 
@@ -156,16 +150,13 @@ namespace ModularDotNet.Core.Managers
                     salt = CreateSaltKey(saltSize);
                 }
 
-                var crypto = System.Security.Cryptography.SHA256.Create();
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return Hash($"{text}{salt}");
             }
 
             #endregion
         }
 
-        public static class SHA384
+        public static class Sha384
         {
             #region Methods
 
@@ -198,16 +189,13 @@ namespace ModularDotNet.Core.Managers
                     salt = CreateSaltKey(saltSize);
                 }
 
-                var crypto = System.Security.Cryptography.SHA384.Create();
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return Hash($"{text}{salt}");
             }
 
             #endregion
         }
 
-        public static class SHA512
+        public static class Sha512
         {
             #region Methods
 
@@ -240,16 +228,13 @@ namespace ModularDotNet.Core.Managers
                     salt = CreateSaltKey(saltSize);
                 }
 
-                var crypto = System.Security.Cryptography.SHA512.Create();
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return Hash($"{text}{salt}");
             }
 
             #endregion
         }
 
-        public static class HMACMD5
+        public static class HmacMD5
         {
             #region Methods
 
@@ -284,30 +269,18 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key, ref string salt, int saltSize = 6)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
                 if (string.IsNullOrEmpty(salt))
                 {
                     salt = CreateSaltKey(saltSize);
                 }
 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACMD5"))
-                {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
-                }
+                return Hash($"{text}{salt}", ref key);
             }
 
             #endregion
         }
 
-        public static class HMACSHA1
+        public static class HmacSha1
         {
             #region Methods
 
@@ -342,30 +315,18 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key, ref string salt, int saltSize = 6)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
                 if (string.IsNullOrEmpty(salt))
                 {
                     salt = CreateSaltKey(saltSize);
                 }
 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA1"))
-                {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
-                }
+                return Hash($"{text}{salt}", ref key);
             }
 
             #endregion
         }
 
-        public static class HMACSHA256
+        public static class HmacSha256
         {
             #region Methods
 
@@ -400,30 +361,18 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key, ref string salt, int saltSize = 6)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
                 if (string.IsNullOrEmpty(salt))
                 {
                     salt = CreateSaltKey(saltSize);
                 }
 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA256"))
-                {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
-                }
+                return Hash($"{text}{salt}", ref key);
             }
 
             #endregion
         }
 
-        public static class HMACSHA384
+        public static class HmacSha384
         {
             #region Methods
 
@@ -458,30 +407,18 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key, ref string salt, int saltSize = 6)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
                 if (string.IsNullOrEmpty(salt))
                 {
                     salt = CreateSaltKey(saltSize);
                 }
 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA384"))
-                {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
-                }
+                return Hash($"{text}{salt}", ref key);
             }
 
             #endregion
         }
 
-        public static class HMACSHA512
+        public static class HmacSha512
         {
             #region Methods
 
@@ -516,24 +453,12 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key, ref string salt, int saltSize = 6)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
                 if (string.IsNullOrEmpty(salt))
                 {
                     salt = CreateSaltKey(saltSize);
                 }
 
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA512"))
-                {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes($"{text}{salt}"));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
-                }
+                return Hash($"{text}{salt}", ref key);
             }
 
             #endregion
