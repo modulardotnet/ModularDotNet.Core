@@ -30,7 +30,14 @@ namespace ModularDotNet.Core
 
         public static void Start()
         {
-            throw new NotImplementedException();
+            _Container.ScanAssemblies<IModule>();
+
+            // Configure module services
+            var modules = ResolveMany<IModule>();
+            foreach (var module in modules)
+            {
+                module.ConfigureServices(_Container);
+            }
         }
 
         public static void End()
