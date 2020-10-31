@@ -80,5 +80,5 @@ jobs:
       run: |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"modulardotnet_ModularDotNet.Core" /o:"modulardotnet" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
         dotnet build --configuration Release --no-restore
-        dotnet test --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        dotnet test --no-restore --collect:"Coverlet" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
