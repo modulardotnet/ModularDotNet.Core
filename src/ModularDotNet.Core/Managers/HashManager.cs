@@ -9,6 +9,34 @@ namespace ModularDotNet.Core.Managers
         #region Methods
 
         /// <summary>
+        /// Common hash algorithm for hash input text.
+        /// </summary>
+        /// <param name="crypto"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        private static string CommonHash(HashAlgorithm crypto, string text)
+        {
+            var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
+            return BitConverter.ToString(hashed)
+                .Replace("-", string.Empty);
+        }
+
+        /// <summary>
+        /// Common HMAC for hash input text.
+        /// </summary>
+        /// <param name="crypto"></param>
+        /// <param name="key"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        private static string CommonHmacHash(HMAC crypto, byte[] key, string text)
+        {
+            crypto.Key = key;
+            var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
+            return BitConverter.ToString(hashed)
+                .Replace("-", string.Empty);
+        }
+
+        /// <summary>
         /// Generate random salt key.
         /// </summary>
         /// <param name="size"></param>
@@ -48,9 +76,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.MD5.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -86,9 +112,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA1.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -125,9 +149,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA256.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -164,9 +186,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA384.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -203,9 +223,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA512.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -242,9 +260,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA1Managed.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -281,9 +297,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA256Managed.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -320,9 +334,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA384Managed.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -359,9 +371,7 @@ namespace ModularDotNet.Core.Managers
             public static string Hash(string text)
             {
                 var crypto = System.Security.Cryptography.SHA512Managed.Create(); // NOSONAR
-                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return BitConverter.ToString(hashed)
-                    .Replace("-", string.Empty);
+                return CommonHash(crypto, text);
             }
 
             /// <summary>
@@ -400,14 +410,10 @@ namespace ModularDotNet.Core.Managers
                 {
                     key = GenerateHashedKey();
                 }
-                
+
                 using (var crypto = System.Security.Cryptography.HMAC.Create("HMACMD5")) // NOSONAR
                 {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
+                    return CommonHmacHash(crypto, key, text);
                 }
             }
 
@@ -446,14 +452,10 @@ namespace ModularDotNet.Core.Managers
                 {
                     key = GenerateHashedKey();
                 }
-                
+
                 using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA1")) // NOSONAR
                 {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
+                    return CommonHmacHash(crypto, key, text);
                 }
             }
 
@@ -492,14 +494,10 @@ namespace ModularDotNet.Core.Managers
                 {
                     key = GenerateHashedKey();
                 }
-                
+
                 using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA256")) // NOSONAR
                 {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
+                    return CommonHmacHash(crypto, key, text);
                 }
             }
 
@@ -538,14 +536,10 @@ namespace ModularDotNet.Core.Managers
                 {
                     key = GenerateHashedKey();
                 }
-                
+
                 using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA384")) // NOSONAR
                 {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
+                    return CommonHmacHash(crypto, key, text);
                 }
             }
 
@@ -584,14 +578,10 @@ namespace ModularDotNet.Core.Managers
                 {
                     key = GenerateHashedKey();
                 }
-                
+
                 using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA512")) // NOSONAR
                 {
-                    crypto.Key = key;
-
-                    var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-                    return BitConverter.ToString(hashed)
-                        .Replace("-", string.Empty);
+                    return CommonHmacHash(crypto, key, text);
                 }
             }
 
@@ -614,7 +604,7 @@ namespace ModularDotNet.Core.Managers
 
             #endregion
         }
-        
+
         #endregion
     }
 }
