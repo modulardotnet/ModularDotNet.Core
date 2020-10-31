@@ -1,5 +1,5 @@
 {
     "dotnet-test-explorer.testProjectPath": "**/**/*Tests.@(csproj|vbproj|fsproj)",
     "dotnet-test-explorer.autoWatch": true,
-    "dotnet-test-explorer.testArguments": "--collect:\"Code Coverage\""
+    "dotnet-test-explorer.testArguments": "--collect:\"XPlat Code Coverage 2\" --settings coverlet.runsettings"
 }
