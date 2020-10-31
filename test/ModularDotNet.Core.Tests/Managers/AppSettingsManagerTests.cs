@@ -9,6 +9,12 @@ namespace ModularDotNet.Core.Tests.Managers
 {
     public class AppSettingsManagerTests
     {
+        #region Fields
+
+        private const int _TestRandomRound = 10;
+
+        #endregion
+
         #region Constructor
 
         public AppSettingsManagerTests()
@@ -20,134 +26,165 @@ namespace ModularDotNet.Core.Tests.Managers
         #endregion
 
         #region Methods
+
         [Fact]
         public void AppSettingsManager_NoEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomString();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomString();
 
-            Assert.Null(AppSettingsManager.GetString(randomKey));
+                Assert.Null(AppSettingsManager.GetString(randomKey));
 
-            AppSettingsManager.SetString(randomKey, randomValue);
+                AppSettingsManager.SetString(randomKey, randomValue);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetString(randomKey));
+                Assert.Equal(randomValue, AppSettingsManager.GetString(randomKey));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_GotEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomString();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomString();
 
-            Assert.Null(AppSettingsManager.GetString(randomKey, true));
+                Assert.Null(AppSettingsManager.GetString(randomKey, true));
 
-            AppSettingsManager.SetString(randomKey, randomValue, true);
+                AppSettingsManager.SetString(randomKey, randomValue, true);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetString(randomKey, true));
+                Assert.Equal(randomValue, AppSettingsManager.GetString(randomKey, true));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Boolean_NoEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomBoolean();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomBoolean();
 
-            Assert.Null(AppSettingsManager.GetBoolean(randomKey));
+                Assert.Null(AppSettingsManager.GetBoolean(randomKey));
 
-            AppSettingsManager.SetBoolean(randomKey, randomValue);
+                AppSettingsManager.SetBoolean(randomKey, randomValue);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetBoolean(randomKey));
+                Assert.Equal(randomValue, AppSettingsManager.GetBoolean(randomKey));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Boolean_GotEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomBoolean();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomBoolean();
 
-            Assert.Null(AppSettingsManager.GetBoolean(randomKey, true));
+                Assert.Null(AppSettingsManager.GetBoolean(randomKey, true));
 
-            AppSettingsManager.SetBoolean(randomKey, randomValue, true);
+                AppSettingsManager.SetBoolean(randomKey, randomValue, true);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetBoolean(randomKey, true));
+                Assert.Equal(randomValue, AppSettingsManager.GetBoolean(randomKey, true));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Int_NoEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomInt();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomInt();
 
-            Assert.Null(AppSettingsManager.GetInt(randomKey));
+                Assert.Null(AppSettingsManager.GetInt(randomKey));
 
-            AppSettingsManager.SetInt(randomKey, randomValue);
+                AppSettingsManager.SetInt(randomKey, randomValue);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetInt(randomKey));
+                Assert.Equal(randomValue, AppSettingsManager.GetInt(randomKey));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Int_GotEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomInt();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomInt();
 
-            Assert.Null(AppSettingsManager.GetInt(randomKey, true));
+                Assert.Null(AppSettingsManager.GetInt(randomKey, true));
 
-            AppSettingsManager.SetInt(randomKey, randomValue, true);
+                AppSettingsManager.SetInt(randomKey, randomValue, true);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetInt(randomKey, true));
+                Assert.Equal(randomValue, AppSettingsManager.GetInt(randomKey, true));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Double_NoEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomDouble();
-            
-            Assert.Null(AppSettingsManager.GetDouble(randomKey));
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomDouble();
 
-            AppSettingsManager.SetDouble(randomKey, randomValue);
+                Assert.Null(AppSettingsManager.GetDouble(randomKey));
 
-            Assert.Equal(randomValue, AppSettingsManager.GetDouble(randomKey));
+                AppSettingsManager.SetDouble(randomKey, randomValue);
+
+                Assert.Equal(randomValue, AppSettingsManager.GetDouble(randomKey));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Double_GotEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomDouble();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomDouble();
 
-            Assert.Null(AppSettingsManager.GetDouble(randomKey, true));
+                Assert.Null(AppSettingsManager.GetDouble(randomKey, true));
 
-            AppSettingsManager.SetDouble(randomKey, randomValue, true);
+                AppSettingsManager.SetDouble(randomKey, randomValue, true);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetDouble(randomKey, true));
+                Assert.Equal(randomValue, AppSettingsManager.GetDouble(randomKey, true));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Decimal_NoEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomDecimal();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomDecimal();
 
-            Assert.Null(AppSettingsManager.GetDecimal(randomKey));
+                Assert.Null(AppSettingsManager.GetDecimal(randomKey));
 
-            AppSettingsManager.SetDecimal(randomKey, randomValue);
+                AppSettingsManager.SetDecimal(randomKey, randomValue);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetDecimal(randomKey));
+                Assert.Equal(randomValue, AppSettingsManager.GetDecimal(randomKey));
+            }
         }
 
         [Fact]
         public void AppSettingsManager_Decimal_GotEncryption()
         {
-            var randomKey = Generator.RandomString();
-            var randomValue = Generator.RandomDecimal();
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomKey = Generator.RandomString();
+                var randomValue = Generator.RandomDecimal();
 
-            Assert.Null(AppSettingsManager.GetDecimal(randomKey, true));
+                Assert.Null(AppSettingsManager.GetDecimal(randomKey, true));
 
-            AppSettingsManager.SetDecimal(randomKey, randomValue, true);
+                AppSettingsManager.SetDecimal(randomKey, randomValue, true);
 
-            Assert.Equal(randomValue, AppSettingsManager.GetDecimal(randomKey, true));
+                Assert.Equal(randomValue, AppSettingsManager.GetDecimal(randomKey, true));
+            }
         }
 
         #endregion
