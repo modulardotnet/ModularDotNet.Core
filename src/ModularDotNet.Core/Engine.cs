@@ -30,7 +30,7 @@ namespace ModularDotNet.Core
 
         public static void Start()
         {
-
+            throw new NotImplementedException();
         }
 
         public static void End()
