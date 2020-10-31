@@ -30,9 +30,6 @@ namespace ModularDotNet.Core.Tests.TestMaterials.Providers
                 return (T)_Storage[key];
             }
 
-            var a = EncryptionManager.Aes.Decrypt((string)_Storage[key], EncryptionKeyPair);
-            var b = EncryptionManager.Aes.Decrypt<T>((string)_Storage[key], EncryptionKeyPair);
-
             return EncryptionManager.Aes.Decrypt<T>((string)_Storage[key], EncryptionKeyPair);
         }
 
@@ -85,7 +82,7 @@ namespace ModularDotNet.Core.Tests.TestMaterials.Providers
             return Get<double?>(key, isEncrypted);
         }
 
-        public T GetEnum<T>(string key, T defaultValue, bool isEncrypted = false)
+        public T GetEnum<T>(string key, T defaultValue, bool isEncrypted = false) where T : Enum
         {
             if (!_Storage.ContainsKey(key))
             {
@@ -160,7 +157,7 @@ namespace ModularDotNet.Core.Tests.TestMaterials.Providers
             return Set(key, value, isEncrypted);
         }
 
-        public bool SetEnum<T>(string key, T value, bool isEncrypted = false)
+        public bool SetEnum<T>(string key, T value, bool isEncrypted = false) where T : Enum
         {
             return Set(key, value, isEncrypted);
         }

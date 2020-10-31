@@ -73,7 +73,7 @@ namespace ModularDotNet.Core.Managers
             return _Provider?.GetDouble(key, isEncrypted) ?? defaultValue;
         }
 
-        public static T GetEnum<T>(string key, T defaultValue, bool isEncrypted = false)
+        public static T GetEnum<T>(string key, T defaultValue, bool isEncrypted = false) where T : Enum
         {
             return _Provider != null
                 ? _Provider.GetEnum(key, defaultValue, isEncrypted)
@@ -189,7 +189,7 @@ namespace ModularDotNet.Core.Managers
             return _Provider?.SetDouble(key, value, isEncrypted) ?? false;
         }
 
-        public static bool SetEnum<T>(string key, T value, bool isEncrypted = false)
+        public static bool SetEnum<T>(string key, T value, bool isEncrypted = false) where T : Enum
         {
             return _Provider?.SetEnum(key, value, isEncrypted) ?? false;
         }

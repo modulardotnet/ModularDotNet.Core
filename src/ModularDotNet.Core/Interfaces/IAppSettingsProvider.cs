@@ -7,7 +7,7 @@ namespace ModularDotNet.Core.Interfaces
         #region Methods
 
         bool ClearSettings();
-
+        
         bool? GetBoolean(string key, bool isEncrypted = false);
 
         byte? GetByte(string key, bool isEncrypted = false);
@@ -18,7 +18,7 @@ namespace ModularDotNet.Core.Interfaces
 
         double? GetDouble(string key, bool isEncrypted = false);
 
-        T GetEnum<T>(string key, T defaultValue, bool isEncrypted = false);
+        T GetEnum<T>(string key, T defaultValue, bool isEncrypted = false) where T : Enum;
 
         float? GetFloat(string key, bool isEncrypted = false);
 
@@ -33,7 +33,7 @@ namespace ModularDotNet.Core.Interfaces
         short? GetShort(string key, bool isEncrypted = false);
 
         string GetString(string key, bool isEncrypted = false);
-
+        
         bool SetBoolean(string key, bool value, bool isEncrypted = false);
 
         bool SetByte(string key, byte value, bool isEncrypted = false);
@@ -44,7 +44,7 @@ namespace ModularDotNet.Core.Interfaces
 
         bool SetDouble(string key, double value, bool isEncrypted = false);
 
-        bool SetEnum<T>(string key, T value, bool isEncrypted = false);
+        bool SetEnum<T>(string key, T value, bool isEncrypted = false) where T : Enum;
 
         bool SetFloat(string key, float value, bool isEncrypted = false);
 
