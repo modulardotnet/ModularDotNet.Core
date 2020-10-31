@@ -7,11 +7,6 @@
           <Format>opencover</Format>
         </Configuration>
       </DataCollector>
-      <DataCollector friendlyName="XPlat Code Coverage 2">
-        <Configuration>
-          <Format>lcov</Format>
-        </Configuration>
-      </DataCollector>
     </DataCollectors>
   </DataCollectionRunSettings>
 </RunSettings>
