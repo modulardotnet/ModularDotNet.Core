@@ -42,6 +42,16 @@ namespace ModularDotNet.Core.Managers
         {
             return _Provider?.GetByte(key, isEncrypted) ?? defaultValue;
         }
+        
+        public static byte[] GetBytes(string key, bool isEncrypted = false)
+        {
+            return _Provider?.GetBytes(key, isEncrypted);
+        }
+
+        public static byte[] GetBytes(string key, byte[] defaultValue, bool isEncrypted = false)
+        {
+            return _Provider?.GetBytes(key, isEncrypted) ?? defaultValue;
+        }
 
         public static DateTime? GetDateTime(string key, bool isEncrypted = false)
         {
@@ -172,6 +182,11 @@ namespace ModularDotNet.Core.Managers
         public static bool SetByte(string key, byte value, bool isEncrypted = false)
         {
             return _Provider?.SetByte(key, value, isEncrypted) ?? false;
+        }
+        
+        public static bool SetBytes(string key, byte[] value, bool isEncrypted = false)
+        {
+            return _Provider?.SetBytes(key, value, isEncrypted) ?? false;
         }
 
         public static bool SetDateTime(string key, DateTime value, bool isEncrypted = false)

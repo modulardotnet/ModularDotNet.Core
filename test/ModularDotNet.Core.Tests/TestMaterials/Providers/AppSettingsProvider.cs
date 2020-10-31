@@ -64,7 +64,18 @@ namespace ModularDotNet.Core.Tests.TestMaterials.Providers
 
         public byte? GetByte(string key, bool isEncrypted = false)
         {
-            return Get<byte?>(key, isEncrypted);
+            var base64 = Get<string>(key, isEncrypted);
+            if (string.IsNullOrEmpty(base64))
+            {
+                return null;
+            }
+            return Convert.FromBase64String(base64)[0];
+        }
+
+        public byte[] GetBytes(string key, bool isEncrypted = false)
+        {
+            var base64 = Get<string>(key, isEncrypted);
+            return !string.IsNullOrEmpty(base64) ? Convert.FromBase64String(base64) : null;
         }
 
         public DateTime? GetDateTime(string key, bool isEncrypted = false)
@@ -139,7 +150,14 @@ namespace ModularDotNet.Core.Tests.TestMaterials.Providers
 
         public bool SetByte(string key, byte value, bool isEncrypted = false)
         {
-            return Set(key, value, isEncrypted);
+            var base64 = Convert.ToBase64String(new[] { value });
+            return Set(key, base64, isEncrypted);
+        }
+
+        public bool SetBytes(string key, byte[] value, bool isEncrypted = false)
+        {
+            var base64 = Convert.ToBase64String(value);
+            return Set(key, base64, isEncrypted);
         }
 
         public bool SetDateTime(string key, DateTime value, bool isEncrypted = false)

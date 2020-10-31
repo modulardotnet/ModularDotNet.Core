@@ -12,6 +12,8 @@ namespace ModularDotNet.Core.Interfaces
 
         byte? GetByte(string key, bool isEncrypted = false);
 
+        byte[] GetBytes(string key, bool isEncrypted = false);
+
         DateTime? GetDateTime(string key, bool isEncrypted = false);
 
         decimal? GetDecimal(string key, bool isEncrypted = false);
@@ -37,6 +39,8 @@ namespace ModularDotNet.Core.Interfaces
         bool SetBoolean(string key, bool value, bool isEncrypted = false);
 
         bool SetByte(string key, byte value, bool isEncrypted = false);
+        
+        bool SetBytes(string key, byte[] value, bool isEncrypted = false);
 
         bool SetDateTime(string key, DateTime value, bool isEncrypted = false);
 
