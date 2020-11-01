@@ -1,7 +1,11 @@
+using System.Data.SqlTypes;
 using System;
+using DryIoc;
 using Xunit;
 using ModularDotNet.Core.Managers;
 using ModularDotNet.Core.Tests.TestUtilities;
+using ModularDotNet.Core.Tests.TestMaterials.Interfaces;
+using ModularDotNet.Core.Interfaces;
 
 namespace ModularDotNet.Core.Tests.Managers
 {
@@ -33,15 +37,25 @@ namespace ModularDotNet.Core.Tests.Managers
                 var randomValue = Generator.RandomString();
                 EncryptionManager.Aes.Encrypt(randomValue);
             });
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var randomValue = Generator.RandomString();
+                EncryptionManager.Aes.Encrypt(randomValue, Generator.RandomBytes(), null);
+            });
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var randomValue = Generator.RandomString();
+                EncryptionManager.Aes.Encrypt(randomValue, null, Generator.RandomBytes());
+            });
         }
 
-         [Fact]
+        [Fact]
         public void EncryptionManager_DecyrptWithEmptyInput()
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
                 var keyPair = EncryptionManager.Aes.GenerateKeyPair();
-                EncryptionManager.Aes.Encrypt(null, keyPair);
+                EncryptionManager.Aes.Decrypt(null, keyPair);
             });
         }
 
@@ -51,8 +65,31 @@ namespace ModularDotNet.Core.Tests.Managers
             Assert.Throws<ArgumentNullException>(() =>
             {
                 var randomValue = Generator.RandomString();
-                EncryptionManager.Aes.Encrypt(randomValue);
+                EncryptionManager.Aes.Decrypt(randomValue);
             });
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var randomValue = Generator.RandomString();
+                EncryptionManager.Aes.Decrypt(randomValue, Generator.RandomBytes(), null);
+            });
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var randomValue = Generator.RandomString();
+                EncryptionManager.Aes.Decrypt(randomValue, null, Generator.RandomBytes());
+            });
+        }
+
+        [Fact]
+        public void EncryptionManager_EncyrptionWithCurrent()
+        {
+            Engine.Register<ICurrent, Current>(Reuse.ScopedOrSingleton);
+
+            var randomValue = Generator.RandomString();
+
+            var encrypted = EncryptionManager.Aes.Encrypt(randomValue);
+            var decrypted = EncryptionManager.Aes.Decrypt(encrypted);
+
+            Assert.Equal(randomValue, decrypted);
         }
 
         [Fact]
