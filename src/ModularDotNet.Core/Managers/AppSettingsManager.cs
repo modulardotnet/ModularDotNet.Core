@@ -7,11 +7,16 @@ namespace ModularDotNet.Core.Managers
     {
         #region Properties
 
-        private static IAppSettingsProvider _Provider { get; } = Engine.Resolve<IAppSettingsProvider>();
+        private static IAppSettingsProvider _Provider { get; set; } = Engine.Resolve<IAppSettingsProvider>();
 
         #endregion
 
         #region Methods
+
+        public static void ResetProvider()
+        {
+            _Provider = Engine.Resolve<IAppSettingsProvider>();
+        }
 
         public static bool ClearSettings()
         {
@@ -42,7 +47,7 @@ namespace ModularDotNet.Core.Managers
         {
             return _Provider?.GetByte(key, isEncrypted) ?? defaultValue;
         }
-        
+
         public static byte[] GetBytes(string key, bool isEncrypted = false)
         {
             return _Provider?.GetBytes(key, isEncrypted);
@@ -183,7 +188,7 @@ namespace ModularDotNet.Core.Managers
         {
             return _Provider?.SetByte(key, value, isEncrypted) ?? false;
         }
-        
+
         public static bool SetBytes(string key, byte[] value, bool isEncrypted = false)
         {
             return _Provider?.SetBytes(key, value, isEncrypted) ?? false;
