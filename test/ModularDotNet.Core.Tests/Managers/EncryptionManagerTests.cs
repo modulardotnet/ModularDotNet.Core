@@ -16,6 +16,46 @@ namespace ModularDotNet.Core.Tests.Managers
         #region Methods
 
         [Fact]
+        public void EncryptionManager_EncyrptWithEmptyInput()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var keyPair = EncryptionManager.Aes.GenerateKeyPair();
+                EncryptionManager.Aes.Encrypt(null, keyPair);
+            });
+        }
+
+        [Fact]
+        public void EncryptionManager_EncyrptWithEmptyKeyPair()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var randomValue = Generator.RandomString();
+                EncryptionManager.Aes.Encrypt(randomValue);
+            });
+        }
+
+         [Fact]
+        public void EncryptionManager_DecyrptWithEmptyInput()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var keyPair = EncryptionManager.Aes.GenerateKeyPair();
+                EncryptionManager.Aes.Encrypt(null, keyPair);
+            });
+        }
+
+        [Fact]
+        public void EncryptionManager_DecyrptWithEmptyKeyPair()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var randomValue = Generator.RandomString();
+                EncryptionManager.Aes.Encrypt(randomValue);
+            });
+        }
+
+        [Fact]
         public void EncryptionManager_Aes_NormalEncryption()
         {
             for (var i = 0; i < _TestRandomRound; i++)
