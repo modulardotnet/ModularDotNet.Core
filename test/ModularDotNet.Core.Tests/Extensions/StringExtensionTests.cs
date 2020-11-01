@@ -80,7 +80,28 @@ namespace ModularDotNet.Core.Tests.Extensions
             {
                 var randomLength = Generator.RandomInt();
                 var randomValue = Generator.RandomString();
-                Assert.Equal(Math.Max(randomLength, randomValue.Length), randomValue.Pad(randomLength).Length);
+                var pad = randomValue.Pad(randomLength);
+                Assert.Equal(Math.Max(randomLength, randomValue.Length), pad.Length);
+                if (randomLength > randomValue.Length)
+                {
+                    Assert.True(pad.StartsWith(" "));
+                }
+            }
+        }
+
+        [Fact]
+        public void StringExtension_Pad_Right()
+        {
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomLength = Generator.RandomInt();
+                var randomValue = Generator.RandomString();
+                var pad = randomValue.Pad(randomLength, paddingLeft: false);
+                Assert.Equal(Math.Max(randomLength, randomValue.Length), pad.Length);
+                if (randomLength > randomValue.Length)
+                {
+                    Assert.True(pad.EndsWith(" "));
+                }
             }
         }
 
