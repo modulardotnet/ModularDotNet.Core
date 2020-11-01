@@ -1,4 +1,5 @@
 using System;
+using ModularDotNet.Core.Tests.TestUtilities;
 using Xunit;
 
 namespace ModularDotNet.Core.Tests.Extensions
@@ -9,8 +10,6 @@ namespace ModularDotNet.Core.Tests.Extensions
 
         private const int _TestRandomRound = 10;
 
-        private static Random _Seed = new Random();
-
         #endregion
 
         #region Methods
@@ -20,7 +19,7 @@ namespace ModularDotNet.Core.Tests.Extensions
         {
             for (var i = 0; i < _TestRandomRound; i++)
             {
-                var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100));
+                var randomValue = "".GenerateRandomString(Generator.RandomInt());
                 Assert.Matches(@"^[0-9a-zA-Z]+$", randomValue);
             }
         }
@@ -30,7 +29,7 @@ namespace ModularDotNet.Core.Tests.Extensions
         {
             for (var i = 0; i < _TestRandomRound; i++)
             {
-                var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), true);
+                var randomValue = "".GenerateRandomString(Generator.RandomInt(), true);
                 Assert.Matches(@"^[0-9]+$", randomValue);
             }
         }
@@ -40,7 +39,7 @@ namespace ModularDotNet.Core.Tests.Extensions
         {
             for (var i = 0; i < _TestRandomRound; i++)
             {
-                var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), lowercase: true);
+                var randomValue = "".GenerateRandomString(Generator.RandomInt(), lowercase: true);
                 Assert.Matches(@"^[a-z]+$", randomValue);
             }
         }
@@ -50,8 +49,18 @@ namespace ModularDotNet.Core.Tests.Extensions
         {
             for (var i = 0; i < _TestRandomRound; i++)
             {
-                var randomValue = "".GenerateRandomString(new Random(_Seed.Next()).Next(10, 100), uppercase: true);
+                var randomValue = "".GenerateRandomString(Generator.RandomInt(), uppercase: true);
                 Assert.Matches(@"^[A-Z]+$", randomValue);
+            }
+        }
+
+        [Fact]
+        public void StringExtension_GenerateRandomString_WithAdditionalCharacter()
+        {
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomValue = "".GenerateRandomString(Generator.RandomInt(), true, true, true, " -_");
+                Assert.Matches(@"^[0-9a-zA-Z_\-\s]+$", randomValue);
             }
         }
 
@@ -62,13 +71,52 @@ namespace ModularDotNet.Core.Tests.Extensions
         }
 
         [Fact]
+        public void StringExtension_CheckLuhn_Failure()
+        {
+            Assert.False("79927398719".CheckLuhn());
+        }
+
+        [Fact]
+        public void StringExtension_CheckLuhn_Failure_EmptyLength()
+        {
+            Assert.False("".CheckLuhn());
+        }
+
+        [Fact]
+        public void StringExtension_CheckLuhn_Failure_Alphanumeric()
+        {
+            Assert.False("a79927398713".CheckLuhn());
+        }
+
+        [Fact]
         public void StringExtension_Pad()
         {
             for (var i = 0; i < _TestRandomRound; i++)
             {
-                var randomLength = new Random(_Seed.Next()).Next(10, 20);
-                var randomValue = new Random(_Seed.Next()).Next(10, 100).ToString();
-                Assert.Equal(randomValue.Pad(randomLength).Length, randomLength);
+                var randomLength = Generator.RandomInt();
+                var randomValue = Generator.RandomString();
+                Assert.Equal(randomLength, randomValue.Pad(randomLength).Length);
+            }
+        }
+
+        [Fact]
+        public void StringExtension_Pad_EmptyString()
+        {
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomLength = Generator.RandomInt();
+                Assert.Equal(randomLength, "".Pad(randomLength).Length);
+            }
+        }
+
+        [Fact]
+        public void StringExtension_Pad_StringLengthLongerThanParamLength()
+        {
+            for (var i = 0; i < _TestRandomRound; i++)
+            {
+                var randomValue = Generator.RandomString();
+                var randomLength = Generator.RandomInt(1, randomValue.Length);
+                Assert.Equal(randomValue.Length, randomValue.Pad(randomLength).Length);
             }
         }
 

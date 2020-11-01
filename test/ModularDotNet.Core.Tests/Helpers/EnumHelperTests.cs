@@ -20,6 +20,15 @@ namespace ModularDotNet.Core.Tests.Helpers
         }
 
         [Fact]
+        public void EnumHelper_GetDictionary_WithStructButNonEnum()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var dic = EnumHelper.GetDictionary<int>();
+            });
+        }
+
+        [Fact]
         public void EnumHelper_GetDictionary_WithIgnore()
         {
             var dic = EnumHelper.GetDictionary<EnumGender>(EnumGender.Male);
@@ -36,6 +45,15 @@ namespace ModularDotNet.Core.Tests.Helpers
         }
 
         [Fact]
+        public void EnumHelper_GetDictionary_WithIgnoreWithStructButNonEnum()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var dic = EnumHelper.GetDictionary<int>(1);
+            });
+        }
+
+        [Fact]
         public void EnumHelper_GetDictionaryInDescription()
         {
             var dic = EnumHelper.GetDictionaryInDescription<EnumGender>();
@@ -44,6 +62,15 @@ namespace ModularDotNet.Core.Tests.Helpers
             {
                 Assert.True(dic.ContainsKey((int)each) && ((Enum)each).GetDescription().Equals(dic[(int)each]));
             }
+        }
+
+        [Fact]
+        public void EnumHelper_GetDictionaryInDescription_WithStructButNonEnum()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var dic = EnumHelper.GetDictionaryInDescription<int>();
+            });
         }
 
         [Fact]
@@ -61,6 +88,16 @@ namespace ModularDotNet.Core.Tests.Helpers
                 Assert.True(dic.ContainsKey((int)each) && ((Enum)each).GetDescription().Equals(dic[(int)each]));
             }
         }
+
+        [Fact]
+        public void EnumHelper_GetDictionaryInDescription_WithIgnoreWithStructButNonEnum()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var dic = EnumHelper.GetDictionaryInDescription<int>(1);
+            });
+        }
+
         [Fact]
         public void EnumHelper_GetDictionaryInDisplayText()
         {
@@ -70,6 +107,15 @@ namespace ModularDotNet.Core.Tests.Helpers
             {
                 Assert.True(dic.ContainsKey((int)each) && ((Enum)each).GetDisplayText().Equals(dic[(int)each]));
             }
+        }
+
+        [Fact]
+        public void EnumHelper_GetDictionaryInDisplayText_WithStructButNonEnum()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var dic = EnumHelper.GetDictionaryInDisplayText<int>();
+            });
         }
 
         [Fact]
@@ -86,6 +132,15 @@ namespace ModularDotNet.Core.Tests.Helpers
 
                 Assert.True(dic.ContainsKey((int)each) && ((Enum)each).GetDisplayText().Equals(dic[(int)each]));
             }
+        }
+
+        [Fact]
+        public void EnumHelper_GetDictionaryInDisplayText_WithIgnoreWithStructButNonEnum()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var dic = EnumHelper.GetDictionaryInDisplayText<int>(1);
+            });
         }
 
         #endregion
