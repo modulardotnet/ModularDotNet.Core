@@ -137,6 +137,11 @@ namespace ModularDotNet.Core
             return _Container.ResolveMany<T>(serviceKey: serviceKey);
         }
 
+        public static IResolverContext OpenScope(object name = null, bool trackInParent = false)
+        {
+            return _Container.OpenScope(name, trackInParent);
+        }
+
         #endregion
     }
 }
