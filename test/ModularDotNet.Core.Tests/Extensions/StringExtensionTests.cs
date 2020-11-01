@@ -80,7 +80,7 @@ namespace ModularDotNet.Core.Tests.Extensions
             {
                 var randomLength = Generator.RandomInt();
                 var randomValue = Generator.RandomString();
-                Assert.Equal(randomLength, randomValue.Pad(randomLength).Length);
+                Assert.Equal(Math.Max(randomLength, randomValue.Length), randomValue.Pad(randomLength).Length);
             }
         }
 
