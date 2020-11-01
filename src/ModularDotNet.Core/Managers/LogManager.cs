@@ -51,16 +51,16 @@ namespace ModularDotNet.Core.Managers
             Log.Verbose(messageTemplate);
         }
 
-        public static void Verbose(string messageTemplate, params object[] propertyValues)
-        {
-            CreateLoggerIfNotExist();
-            Log.Verbose(messageTemplate, propertyValues);
-        }
-
         public static void Verbose(Exception exception, string messageTemplate)
         {
             CreateLoggerIfNotExist();
             Log.Verbose(exception, messageTemplate);
+        }
+
+        public static void Verbose(string messageTemplate, params object[] propertyValues)
+        {
+            CreateLoggerIfNotExist();
+            Log.Verbose(messageTemplate, propertyValues);
         }
 
         public static void Verbose(Exception exception, string messageTemplate, params object[] propertyValues)
@@ -111,16 +111,16 @@ namespace ModularDotNet.Core.Managers
             Log.Debug(messageTemplate);
         }
 
-        public static void Debug(string messageTemplate, params object[] propertyValues)
-        {
-            CreateLoggerIfNotExist();
-            Log.Debug(messageTemplate, propertyValues);
-        }
-
         public static void Debug(Exception exception, string messageTemplate)
         {
             CreateLoggerIfNotExist();
             Log.Debug(exception, messageTemplate);
+        }
+
+        public static void Debug(string messageTemplate, params object[] propertyValues)
+        {
+            CreateLoggerIfNotExist();
+            Log.Debug(messageTemplate, propertyValues);
         }
 
         public static void Debug(Exception exception, string messageTemplate, params object[] propertyValues)
@@ -171,16 +171,16 @@ namespace ModularDotNet.Core.Managers
             Log.Information(messageTemplate);
         }
 
-        public static void Information(string messageTemplate, params object[] propertyValues)
-        {
-            CreateLoggerIfNotExist();
-            Log.Information(messageTemplate, propertyValues);
-        }
-
         public static void Information(Exception exception, string messageTemplate)
         {
             CreateLoggerIfNotExist();
             Log.Information(exception, messageTemplate);
+        }
+
+        public static void Information(string messageTemplate, params object[] propertyValues)
+        {
+            CreateLoggerIfNotExist();
+            Log.Information(messageTemplate, propertyValues);
         }
 
         public static void Information(Exception exception, string messageTemplate, params object[] propertyValues)
@@ -231,16 +231,16 @@ namespace ModularDotNet.Core.Managers
             Log.Warning(messageTemplate);
         }
 
-        public static void Warning(string messageTemplate, params object[] propertyValues)
-        {
-            CreateLoggerIfNotExist();
-            Log.Warning(messageTemplate, propertyValues);
-        }
-
         public static void Warning(Exception exception, string messageTemplate)
         {
             CreateLoggerIfNotExist();
             Log.Warning(exception, messageTemplate);
+        }
+
+        public static void Warning(string messageTemplate, params object[] propertyValues)
+        {
+            CreateLoggerIfNotExist();
+            Log.Warning(messageTemplate, propertyValues);
         }
 
         public static void Warning(Exception exception, string messageTemplate, params object[] propertyValues)
@@ -291,16 +291,16 @@ namespace ModularDotNet.Core.Managers
             Log.Error(messageTemplate);
         }
 
-        public static void Error(string messageTemplate, params object[] propertyValues)
-        {
-            CreateLoggerIfNotExist();
-            Log.Error(messageTemplate, propertyValues);
-        }
-
         public static void Error(Exception exception, string messageTemplate)
         {
             CreateLoggerIfNotExist();
             Log.Error(exception, messageTemplate);
+        }
+
+        public static void Error(string messageTemplate, params object[] propertyValues)
+        {
+            CreateLoggerIfNotExist();
+            Log.Error(messageTemplate, propertyValues);
         }
 
         public static void Error(Exception exception, string messageTemplate, params object[] propertyValues)
@@ -351,16 +351,16 @@ namespace ModularDotNet.Core.Managers
             Log.Fatal(messageTemplate);
         }
 
-        public static void Fatal(string messageTemplate, params object[] propertyValues)
-        {
-            CreateLoggerIfNotExist();
-            Log.Fatal(messageTemplate, propertyValues);
-        }
-
         public static void Fatal(Exception exception, string messageTemplate)
         {
             CreateLoggerIfNotExist();
             Log.Fatal(exception, messageTemplate);
+        }
+
+        public static void Fatal(string messageTemplate, params object[] propertyValues)
+        {
+            CreateLoggerIfNotExist();
+            Log.Fatal(messageTemplate, propertyValues);
         }
 
         public static void Fatal(Exception exception, string messageTemplate, params object[] propertyValues)
