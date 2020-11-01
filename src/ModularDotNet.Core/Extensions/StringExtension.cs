@@ -11,7 +11,7 @@ public static class StringExtension // NOSONAR
     #endregion
 
     #region Methods
-    
+
     public static string GenerateRandomString(this string stringValue, int length, bool numeric = false, bool lowercase = false, bool uppercase = false, string additionalCharacters = null)
     {
         var ret = new StringBuilder();
@@ -99,13 +99,7 @@ public static class StringExtension // NOSONAR
             ret = "";
         }
 
-        if (ret.Length > length)
-        {
-            ret = paddingLeft
-                ? ret.Substring(0, length)
-                : ret.Substring(ret.Length - (length + 1), length);
-        }
-        else if (ret.Length < length)
+        if (ret.Length < length)
         {
             ret = paddingLeft
                 ? ret.PadLeft(length, paddingChar)
