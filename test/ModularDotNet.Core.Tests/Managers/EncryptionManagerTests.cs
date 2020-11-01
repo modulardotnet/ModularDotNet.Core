@@ -1,4 +1,3 @@
-using System.Data.SqlTypes;
 using System;
 using DryIoc;
 using Xunit;
@@ -9,6 +8,7 @@ using ModularDotNet.Core.Interfaces;
 
 namespace ModularDotNet.Core.Tests.Managers
 {
+    [TestCaseOrderer("ModularDotNet.Core.Tests.TestUtilities.TestPriorityOrderer", "ModularDotNet.Core.Tests")]
     public class EncryptionManagerTests
     {
         #region Fields
@@ -64,22 +64,22 @@ namespace ModularDotNet.Core.Tests.Managers
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                var randomValue = Generator.RandomString();
-                EncryptionManager.Aes.Decrypt(randomValue);
+                var base64 = Convert.ToBase64String(Generator.RandomBytes());
+                EncryptionManager.Aes.Decrypt(base64);
             });
             Assert.Throws<ArgumentNullException>(() =>
             {
-                var randomValue = Generator.RandomString();
-                EncryptionManager.Aes.Decrypt(randomValue, Generator.RandomBytes(), null);
+                var base64 = Convert.ToBase64String(Generator.RandomBytes());
+                EncryptionManager.Aes.Decrypt(base64, Generator.RandomBytes(), null);
             });
             Assert.Throws<ArgumentNullException>(() =>
             {
-                var randomValue = Generator.RandomString();
-                EncryptionManager.Aes.Decrypt(randomValue, null, Generator.RandomBytes());
+                var base64 = Convert.ToBase64String(Generator.RandomBytes());
+                EncryptionManager.Aes.Decrypt(base64, null, Generator.RandomBytes());
             });
         }
 
-        [Fact]
+        [Fact, TestPriority(100)]
         public void EncryptionManager_EncyrptionWithCurrent()
         {
             Engine.Register<ICurrent, Current>(Reuse.ScopedOrSingleton);
