@@ -92,7 +92,7 @@ namespace ModularDotNet.Core.Managers
             /// <param name="publicKey"></param>
             /// <param name="privateKey"></param>
             /// <returns></returns>
-            private static byte[] PrivateEncrypt(string clearText, byte[] publicKey, byte[] privateKey)
+            private static byte[] SelfEncrypt(string clearText, byte[] publicKey, byte[] privateKey)
             {
                 ValidateParameters(clearText, ref publicKey, ref privateKey);
 
@@ -130,7 +130,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Encrypt(string clearText, byte[] publicKey = null, byte[] privateKey = null)
             {
-                return Convert.ToBase64String(PrivateEncrypt(clearText, publicKey, privateKey));
+                return Convert.ToBase64String(SelfEncrypt(clearText, publicKey, privateKey));
             }
 
             /// <summary>
@@ -153,7 +153,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string UrlEncrypt(string clearText, byte[] publicKey = null, byte[] privateKey = null)
             {
-                return WebUtility.UrlEncode(Convert.ToBase64String(PrivateEncrypt(clearText, publicKey, privateKey)));
+                return WebUtility.UrlEncode(Convert.ToBase64String(SelfEncrypt(clearText, publicKey, privateKey)));
             }
 
             /// <summary>
@@ -174,7 +174,7 @@ namespace ModularDotNet.Core.Managers
             /// <param name="publicKey"></param>
             /// <param name="privateKey"></param>
             /// <returns></returns>
-            public static string PrivateDecrypt(byte[] cipherBytes, byte[] publicKey, byte[] privateKey)
+            public static string SelfDecrypt(byte[] cipherBytes, byte[] publicKey, byte[] privateKey)
             {
                 ValidateParameters(cipherBytes, ref publicKey, ref privateKey);
 
@@ -211,7 +211,7 @@ namespace ModularDotNet.Core.Managers
             public static string Decrypt(string cipherText, byte[] publicKey = null, byte[] privateKey = null)
             {
                 var byteArr = Convert.FromBase64String(cipherText);
-                return PrivateDecrypt(byteArr, publicKey, privateKey);
+                return SelfDecrypt(byteArr, publicKey, privateKey);
             }
 
             /// <summary>
@@ -267,7 +267,7 @@ namespace ModularDotNet.Core.Managers
             public static string UrlDecrypt(string cipherText, byte[] publicKey = null, byte[] privateKey = null)
             {
                 var byteArr = Convert.FromBase64String(WebUtility.UrlDecode(cipherText));
-                return PrivateDecrypt(byteArr, publicKey, privateKey);
+                return SelfDecrypt(byteArr, publicKey, privateKey);
             }
 
             /// <summary>
