@@ -68,23 +68,8 @@ namespace ModularDotNet.Core.Tests.Extensions
         public void StringExtension_CheckLuhn()
         {
             Assert.True("79927398713".CheckLuhn());
-        }
-
-        [Fact]
-        public void StringExtension_CheckLuhn_Failure()
-        {
             Assert.False("79927398719".CheckLuhn());
-        }
-
-        [Fact]
-        public void StringExtension_CheckLuhn_Failure_EmptyLength()
-        {
             Assert.False("".CheckLuhn());
-        }
-
-        [Fact]
-        public void StringExtension_CheckLuhn_Failure_Alphanumeric()
-        {
             Assert.False("a79927398713".CheckLuhn());
         }
 
