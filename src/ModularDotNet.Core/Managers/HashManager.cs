@@ -28,12 +28,20 @@ namespace ModularDotNet.Core.Managers
         /// <param name="key"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        private static string CommonHmacHash(HMAC crypto, byte[] key, string text)
+        private static string CommonHmacHash(string algorithm, ref byte[] key, string text)
         {
-            crypto.Key = key;
-            var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
-            return BitConverter.ToString(hashed)
-                .Replace("-", string.Empty);
+            if (key == null)
+            {
+                key = GenerateHashedKey();
+            }
+
+            using (var crypto = System.Security.Cryptography.HMAC.Create(algorithm)) // NOSONAR
+            {
+                crypto.Key = key;
+                var hashed = crypto.ComputeHash(Encoding.UTF8.GetBytes(text));
+                return BitConverter.ToString(hashed)
+                    .Replace("-", string.Empty);
+            }
         }
 
         /// <summary>
@@ -406,15 +414,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACMD5")) // NOSONAR
-                {
-                    return CommonHmacHash(crypto, key, text);
-                }
+                return CommonHmacHash("HMACMD5", ref key, text);
             }
 
             /// <summary>
@@ -448,15 +448,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA1")) // NOSONAR
-                {
-                    return CommonHmacHash(crypto, key, text);
-                }
+                return CommonHmacHash("HMACSHA1", ref key, text);
             }
 
             /// <summary>
@@ -490,15 +482,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA256")) // NOSONAR
-                {
-                    return CommonHmacHash(crypto, key, text);
-                }
+                return CommonHmacHash("HMACSHA256", ref key, text);
             }
 
             /// <summary>
@@ -532,15 +516,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA384")) // NOSONAR
-                {
-                    return CommonHmacHash(crypto, key, text);
-                }
+                return CommonHmacHash("HMACSHA384", ref key, text);
             }
 
             /// <summary>
@@ -574,15 +550,7 @@ namespace ModularDotNet.Core.Managers
             /// <returns></returns>
             public static string Hash(string text, ref byte[] key)
             {
-                if (key == null)
-                {
-                    key = GenerateHashedKey();
-                }
-
-                using (var crypto = System.Security.Cryptography.HMAC.Create("HMACSHA512")) // NOSONAR
-                {
-                    return CommonHmacHash(crypto, key, text);
-                }
+                return CommonHmacHash("HMACSHA512", ref key, text);
             }
 
             /// <summary>
